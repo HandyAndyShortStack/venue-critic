@@ -1,12 +1,21 @@
 source 'https://rubygems.org'
 
 ruby '1.9.3'
+<<<<<<< HEAD
 
 gem 'rails', '3.2.13'
 
 gem 'pg'
 
 gem 'strong_parameters'
+=======
+
+gem 'rails', '3.2.13'
+
+gem 'pg'
+>>>>>>> 8e4d6d99bf9928e6f21315164f75a92ac8796ecc
+
+gem 'jquery-rails'
 
 gem 'flog'
 
