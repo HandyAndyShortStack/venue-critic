@@ -1,0 +1,6 @@
+<h2>you are reading a review of <%= @review.venue.name %></h2>
+<% @review.attributes.each do |attr_name, attr_value| %>
+<p>
+  <%= attr_name %>: <%= attr_value %>
+</p>
+<% end %>

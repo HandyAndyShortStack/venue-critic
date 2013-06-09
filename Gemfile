@@ -43,3 +43,4 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'database_cleaner', '0.7.2'

@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130609004411) do
+ActiveRecord::Schema.define(:version => 20130609051658) do
+
+  create_table "reviews", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "venue_id"
+    t.integer  "overall"
+    t.text     "note"
+    t.text     "dispute"
+    t.integer  "soundequip"
+    t.integer  "soundtech"
+    t.integer  "compensation"
+    t.text     "compdescr"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "venues", :force => true do |t|
     t.string   "name"

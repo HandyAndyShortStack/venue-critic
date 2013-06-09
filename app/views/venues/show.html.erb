@@ -5,6 +5,12 @@
 </p>
 <% end %>
 
+<h3>reviews:</h3>
+
+<% @venue.reviews.each do |review| %>
+  <%= render partial: "review", locals: { review: review } %>
+<% end %>
+
 <%= link_to "back to index", venues_path %><br />
 <%= link_to "edit venue information", edit_venue_path(@venue) %><br />
 <%= button_to "delete venue information",
