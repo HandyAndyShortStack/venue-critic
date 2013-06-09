@@ -1,4 +1,5 @@
-<h2>you are reading a review of <%= @review.venue.name %></h2>
+<p><%= link_to "back to venue page", @venue %></p>
+<h2>you are reading a review of <%= @venue.name %></h2>
 <% @review.attributes.each do |attr_name, attr_value| %>
 <p>
   <%= attr_name %>: <%= attr_value %>

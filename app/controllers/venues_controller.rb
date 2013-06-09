@@ -41,6 +41,9 @@ class VenuesController < ApplicationController
 
     def find_venue
       @venue = Venue.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "Couldn't find that venue"
+      redirect_to root_path
     end
 
     def venue_params

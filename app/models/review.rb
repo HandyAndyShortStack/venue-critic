@@ -1,6 +1,4 @@
 class Review < ActiveRecord::Base
-
-  def venue
-    Venue.find(venue_id)
-  end
+  belongs_to :review
+  belongs_to :user
 end

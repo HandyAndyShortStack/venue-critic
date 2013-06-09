@@ -1,0 +1,33 @@
+<%= form_for [@venue, @review] do |f| %> 
+  <p>
+    <%= f.label :overall %>
+    <%= f.number_field :overall %>
+  </p>
+  <p>
+    <%= f.label :note %>
+    <%= f.text_field :note %>
+  </p>
+  <p>
+    <%= f.label :dispute %>
+    <%= f.text_field :dispute %>
+  </p>
+  <p>
+    <%= f.label :soundequip %>
+    <%= f.number_field :soundequip %>
+  </p>
+  <p>
+    <%= f.label :soundtech %>
+    <%= f.number_field :soundtech %>
+  </p>
+  <p>
+    <%= f.label :compensation %>
+    <%= f.number_field :compensation %>
+  </p>
+  <p>
+    <%= f.label :compdescr %>
+    <%= f.text_field :compdescr %>
+  </p>
+  <br />
+  <%= f.submit %>
+<% end %>
+
