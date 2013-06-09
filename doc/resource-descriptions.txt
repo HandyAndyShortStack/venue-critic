@@ -1,0 +1,56 @@
+user
+  HAS ONE
+    login name:string
+    email:string
+    password:string
+  HAS MANY venues THROUGH reviews
+
+venue
+  HAS ONE
+  name:string
+  address:string
+  neighborhood:string
+  alcohol:boolean
+  allages:string
+  stagesize:integer
+
+  PULLED FROM REVIEW EACH QUERY:
+    dancing:string
+    soundequip:integer
+    soundtech:integer
+    dispute_count:integer
+
+review (all optional, all with rubric)
+  HAS ONE
+    user_id:integer
+    venue_id:integer
+    overall:integer
+    note:text
+    dispute:text
+    soundequip:integer
+    soundtech:integer
+    dancing:integer
+    compensation:good, fair, poor, atrocious
+    compdescr
+
+  HAS MANY compschemes
+
+compscheme
+  review_id:integer
+  type:string
+  num_a:integer
+  num_b:integer
+
+  POSSIBLE COMP SCHEMES
+    guarantee
+    attendance_modifier
+    percentage of bar
+    percentage of bar with deduction
+    percentage of door
+    percentage of door with deduction
+    tips
+    drink minimum
+    food
+    alcohol
+    lodging
+
