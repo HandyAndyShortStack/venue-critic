@@ -1,0 +1,8 @@
+<h2>Here are all the venues</h2>
+<%= link_to "add a new venue", new_venue_path %>
+<ul>
+  <% @venues.each do |venue| %>
+    <li><%= link_to venue.name, venue %></li>
+  <% end %>
+</ul>
+

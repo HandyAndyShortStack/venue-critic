@@ -1,0 +1,30 @@
+<%= form_for @venue do |f| %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </p>
+  <p>
+    <%= f.label :neighborhood %><br />
+    <%= f.text_field :neighborhood %>
+  </p>
+  <p>
+    <%= f.label :alcohol %><br />
+    <%= f.text_field :alcohol %>
+  </p>
+  <p>
+    <%= f.label :allages %><br />
+    <%= f.text_field :allages %>
+  </p>
+  <p>
+    <%= f.label :stagesize %><br />
+    <%= f.text_field :stagesize %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
