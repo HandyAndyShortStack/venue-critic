@@ -33,7 +33,6 @@ class VenuesController < ApplicationController
   end
 
   def destroy
-    binding.pry
     @venue.destroy
     redirect_to "/", notice: "Venue information destroyed"
   end
