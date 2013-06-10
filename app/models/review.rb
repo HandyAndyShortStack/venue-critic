@@ -1,4 +1,4 @@
 class Review < ActiveRecord::Base
-  belongs_to :review
+  belongs_to :venue
   belongs_to :user
 end
