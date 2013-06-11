@@ -14,42 +14,6 @@ class AuthenticationsController < ApplicationController
     end
   end
 
-  def index
-    @authentications = Authentication.all
-  end
-
-  def show
-  end
-
-  def new
-    @authentication = Authentication.new
-  end
-
-  def create
-    @authentication = Authentication.new(params[:authentication])
-    if @authentication.save
-      redirect_to @authentication, :notice => "authentication created"
-    else
-      render :action => 'new'
-    end
-  end
-
-  def edit
-  end
-
-  def update
-    if @authentication.update_attributes(params[:authentication])
-      redirect_to @authentication, :notice  => "authentication updated"
-    else
-      render :action => 'edit'
-    end
-  end
-
-  def destroy
-    @authentication.destroy
-    redirect_to authentications_url, :notice => "authentication destroyed"
-  end
-
 private
 
   def sign_in_established_user(authentication)
