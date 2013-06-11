@@ -5,30 +5,12 @@ class AuthenticationsController < ApplicationController
   end
 
   def twitter
-    omni = ActionController::Parameters.new(request.env["omniauth.auth"]).permit!
-    authentication = Authentication.find_by_provider_and_user_id(omni['provider'], omni['uid'])
-    if authentication
-      flash[:notice] = "Logged in Successfully"
-      sign_in_and_redirect User.find(authentication.user_id)
-    elsif current_user
-      token = omni['credentials'].token
-      token_secret = omni['credentials'].secret
-      current_user.authentications.create!(:provider => omni['provider'],
-                                           :user_id => omni['uid'], :token => token,
-                                           :token_secret => token_secret)
-      flash[:notice] = "Authentication successful."
-      sign_in_and_redirect current_user
+    @omni = ActionController::Parameters.new(request.env["omniauth.auth"]).permit!
+    authentication = Authentication.find_by_provider_and_user_id(@omni['provider'], @omni['uid'])
+    if authentication || current_user
+      sign_in_established_user(authentication)
     else
-      user = User.new.apply_omniauth(omni)
-      user = User.new
-      user.apply_omniauth(omni)
-      if user.save
-        flash[:notice] = "Logged in."
-        sign_in_and_redirect User.find(user.id)
-      else
-        session[:omniauth] = omni.except('extra')
-        redirect_to new_user_registration_path
-      end
+      sign_in_new_user
     end
   end
 
@@ -46,7 +28,7 @@ class AuthenticationsController < ApplicationController
   def create
     @authentication = Authentication.new(params[:authentication])
     if @authentication.save
-      redirect_to @authentication, :notice => "Successfully created authentication."
+      redirect_to @authentication, :notice => "authentication created."
     else
       render :action => 'new'
     end
@@ -57,7 +39,7 @@ class AuthenticationsController < ApplicationController
 
   def update
     if @authentication.update_attributes(params[:authentication])
-      redirect_to @authentication, :notice  => "Successfully updated authentication."
+      redirect_to @authentication, :notice  => "authentication updated."
     else
       render :action => 'edit'
     end
@@ -65,10 +47,30 @@ class AuthenticationsController < ApplicationController
 
   def destroy
     @authentication.destroy
-    redirect_to authentications_url, :notice => "Successfully destroyed authentication."
+    redirect_to authentications_url, :notice => "authentication destroyed"
   end
 
-  private
+private
+  def sign_in_established_user(authentication)
+    if authentication
+      flash[:notice] = "Logged in Successfully"
+      sign_in_and_redirect User.find(authentication.user_id)
+    else
+      flash[:notice] = "Authenticated successful."
+      sign_in_and_redirect current_user.make_authentication(:create!, @omni)
+    end
+  end
+
+  def sign_in_new_user
+    user = User.new.make_authentication(:build, @omni)
+    if user.save
+      flash[:notice] = "Logged in."
+      sign_in_and_redirect User.find(user.id)
+    else
+      session[:omniauth] = @omni.except('extra')
+      redirect_to new_user_registration_path
+    end
+  end
 
   def find_authentication
     @authentication = Authentication.find(params[:id])
