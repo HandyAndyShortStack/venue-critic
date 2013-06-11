@@ -3,6 +3,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :omniauthable
 
+  def apply_omniauth(omni)
+    authentications.build( :provider => omni['provider'],
+                          :user_id => omni['uid'],
+                          :token => omni['credentials']['token'],
+                          :token_secret => omni['credentials']['secret'])
+  end
 
   def password_required?
     (authentications.empty? || !password.blank?) && super
