@@ -23,6 +23,12 @@ gem 'pry-debugger'
 gem 'launchy'
 
 gem 'devise'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'twitter'
+gem 'fb_graph'
+
+gem "nifty-generators", group:  :development
 
 group :test, :development do
   gem 'guard'
@@ -44,3 +50,5 @@ group :assets do
 end
 
 gem 'database_cleaner', '0.7.2'
+
+gem "mocha", :group => :test
