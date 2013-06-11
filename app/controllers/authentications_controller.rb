@@ -4,7 +4,7 @@ class AuthenticationsController < ApplicationController
   end
 
   def twitter
-    omni = request.env["omniauth.auth"]
+    omni = ActionController::Parameters.new(request.env["omniauth.auth"]).permit!
     authentication = Authentication.find_by_provider_and_user_id(omni['provider'], omni['uid'])
     if authentication
       flash[:notice] = "Logged in Successfully"
@@ -20,7 +20,7 @@ class AuthenticationsController < ApplicationController
       sign_in_and_redirect current_user
     else
       user = User.new
-      apply_omniauth(omni)
+      user.apply_omniauth(omni)
       if user.save
         flash[:notice] = "Logged in."
         sign_in_and_redirect User.find(user.id)
@@ -29,14 +29,6 @@ class AuthenticationsController < ApplicationController
         redirect_to new_user_registration_path
       end
     end
-  end
-
-  def apply_omniauth(omni)
-    these_params = { :provider => omni['provider'],
-                     :user_id => omni['uid'],
-                     :token => omni['credentials'].token,
-                     :token_secret => omni['credentials'].secret }
-    Authentication.build(these_params.permit!)
   end
 
   def index
