@@ -28,7 +28,7 @@ class AuthenticationsController < ApplicationController
   def create
     @authentication = Authentication.new(params[:authentication])
     if @authentication.save
-      redirect_to @authentication, :notice => "authentication created."
+      redirect_to @authentication, :notice => "authentication created"
     else
       render :action => 'new'
     end
@@ -39,7 +39,7 @@ class AuthenticationsController < ApplicationController
 
   def update
     if @authentication.update_attributes(params[:authentication])
-      redirect_to @authentication, :notice  => "authentication updated."
+      redirect_to @authentication, :notice  => "authentication updated"
     else
       render :action => 'edit'
     end
@@ -51,20 +51,22 @@ class AuthenticationsController < ApplicationController
   end
 
 private
+
   def sign_in_established_user(authentication)
     if authentication
-      flash[:notice] = "Logged in Successfully"
+      flash[:notice] = "Logged in"
       sign_in_and_redirect User.find(authentication.user_id)
     else
-      flash[:notice] = "Authenticated successful."
-      sign_in_and_redirect current_user.make_authentication(:create!, @omni)
+      flash[:notice] = "Authenticated successful"
+      sign_in_and_redirect current_user.make_authentication(:create, @omni)
     end
   end
 
   def sign_in_new_user
-    user = User.new.make_authentication(:build, @omni)
+    user = User.new
     if user.save
-      flash[:notice] = "Logged in."
+      user.make_authentication(:build, @omni)
+      flash[:notice] = "Logged in"
       sign_in_and_redirect User.find(user.id)
     else
       session[:omniauth] = @omni.except('extra')
@@ -76,7 +78,7 @@ private
     @authentication = Authentication.find(params[:id])
   end
 
-  def authentication_params
+  def auth_params
     params.require(:authentication).permit!
   end
 

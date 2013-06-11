@@ -5,10 +5,12 @@ class User < ActiveRecord::Base
          :confirmable, :omniauthable
 
   def make_authentication(method, omni)
-    authentications.send(method, {  :provider => omni['provider'],
-                                    :user_id => omni['uid'],
-                                    :token => omni['credentials']['token'],
-                                    :token_secret => omni['credentials']['secret']})
+    self.authentications.send(method, {
+      user_id: self.id,
+      provider: omni['provider'],
+      uid: omni['uid'].to_s,
+      token: omni['credentials']['token'],
+      token_secret: omni['credentials']['secret']})
   end
 
   def password_required?
