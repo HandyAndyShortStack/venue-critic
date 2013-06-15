@@ -1,6 +1,8 @@
 VenueCritic::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
+  OmniAuth.config.test_mode = true
+
   config.action_mailer.default_url_options = { host: "localhost:3000" }
 
   # The test environment is used exclusively to run your application's

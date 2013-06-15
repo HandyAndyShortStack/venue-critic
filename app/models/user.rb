@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  # refactor build and create methods to eleminate redundancy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :omniauthable
@@ -11,6 +10,11 @@ class User < ActiveRecord::Base
       uid: omni['uid'].to_s,
       token: omni['credentials']['token'],
       token_secret: omni['credentials']['secret']})
+  end
+
+  def email_required?
+    super
+    # super && provider.blank?
   end
 
   def password_required?
@@ -28,3 +32,4 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :authentications
 end
+

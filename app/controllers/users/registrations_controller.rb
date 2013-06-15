@@ -6,11 +6,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def build_resource(*args)
-      super
-      if session[:omniauth]
-        @user.make_authentication(:build, session[:omniauth])
-        @user.valid?
-      end
+    super
+    if session[:omniauth]
+      @user.make_authentication(:build, session[:omniauth])
+      @user.valid?
+    end
   end
 
   def create
@@ -19,7 +19,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def resource_params
-    params.require(:user).permit(:name, :admin, :email, :password, :password_confirmation)
+    params.require(:user).permit(:username, :name, :admin,
+                                 :email, :password, :password_confirmation)
   end
   private :resource_params
 end
