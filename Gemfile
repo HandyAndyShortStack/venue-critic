@@ -22,6 +22,7 @@ gem 'pry-doc'
 gem 'pry-debugger'
 gem 'launchy'
 
+gem 'cancan'
 gem 'devise'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
