@@ -6,7 +6,7 @@ feature "editing venues" do
 
   scenario "editing a venue" do
     
-    visit "venues"
+    visit "/venues"
     click_link "Wally's"
     click_link "edit venue information"
     fill_in "Allages", with: "yes"

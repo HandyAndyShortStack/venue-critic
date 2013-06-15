@@ -2,6 +2,11 @@ require "spec_helper"
 
 feature "creating reviews" do
 
+  before do
+    user = Factory(:confirmed_user)
+    sign_in_as!(user)
+  end
+
   let!(:venue) { Factory(:venue) }
 
   scenario "creating a new review" do
@@ -15,10 +20,10 @@ feature "creating reviews" do
     fill_in "Soundequip", with: 2
     fill_in "Soundtech", with: 3
     fill_in "Compensation", with: 5
-    fill_in "Compdescr" "We were paid a $500 guarantee, with 40% of the door on top of that"
+    fill_in "Compdescr", with: "We were paid a $500 guarantee, with 40% of the door on top of that"
     click_button "Create Review"
 
-    page.should have_content "review created sucessfully"
+    page.should have_content "review saved"
     page.should have_content "This place has great ribs!"
 
   end

@@ -11,7 +11,7 @@
   <%= render partial: "review", locals: { review: review } %>
 <% end %>
 
-<%= link_to "write a new review", new_venue_review_path(@venue) %><br />
+<%= link_to "review this venue", new_venue_review_path(@venue) %><br />
 <%= link_to "back to index", venues_path %><br />
 <%= link_to "edit venue information", edit_venue_path(@venue) %><br />
 <%= button_to "delete venue information",
