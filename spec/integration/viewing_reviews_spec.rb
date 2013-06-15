@@ -1,13 +1,14 @@
 require "spec_helper"
 
-feature "viewing rewiews" do
+feature "viewing reviews" do
   
   let!(:venue) { Factory(:venue) }
   let!(:review) { Factory(:review) }
 
   scenario "viewing a review" do
 
-    visit "venues"
+    visit "/venues"
+
     click_link "Wally's"
     click_link "read more"
 

@@ -6,7 +6,7 @@ feature "viewing venues" do
 
   scenario "viewing a venue" do
 
-    visit "venues"
+    visit "/venues"
     click_link "Wally's"
 
     page.should have_content("Wally's")

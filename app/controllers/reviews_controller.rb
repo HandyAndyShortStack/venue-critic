@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, only: [ :create, :new, :update, :edit, :destroy ]
   before_filter :find_venue
   before_filter :find_review, only: [:show, :edit, :update, :destroy]
 
@@ -20,28 +20,48 @@ class ReviewsController < ApplicationController
   def show
   end
 
-  private
+  def edit
+  end
 
-    def review_params
-      params.require(:review).permit(
-                                      :user_id, :venue_id, :overall, :note,
-                                      :dispute, :soundequip, :soundtech,
-                                      :compensation, :compdescr
-                                    ).merge(user_id: current_user.id)
+  def update
+    if @review.update_attributes(review_params)
+      redirect_to [@venue, @review], notice: "Review updated"
+    else
+      render action: "edit", alert: "Review unchaged"
     end
+  end
 
-    def find_review
-      @review = Review.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      flash[:alert] = "Couldn't find that review"
-      redirect_to root_path
-    end
 
-    def find_venue
-      @venue = Venue.find(params[:venue_id])
-    rescue ActiveRecord::RecordNotFound
-      flash[:alert] = "Couldn't find that venue"
-      redirect_to root_path
+  def destroy
+    if @review.destroy
+      redirect_to @venue, notice: "Review destroyed"
+    else
+      redirect_to [@venue, @review], notice: "there was a problem deleting this review"
     end
+  end
+
+private
+
+  def review_params
+    params.require(:review).permit(
+                                    :user_id, :venue_id, :overall, :note,
+                                    :dispute, :soundequip, :soundtech,
+                                    :compensation, :compdescr
+                                  ).merge(user_id: current_user.id)
+  end
+
+  def find_review
+    @review = Review.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "Couldn't find that review"
+    redirect_to root_path
+  end
+
+  def find_venue
+    @venue = Venue.find(params[:venue_id])
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "Couldn't find that venue"
+    redirect_to root_path
+  end
 
 end
