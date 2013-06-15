@@ -6,4 +6,7 @@
 </p>
 <% end %>
 <%= link_to "edit this review", edit_venue_review_path(@review) %><br />
-
+<%= button_to "delete this review",
+    venue_review_path(@venue, @review),
+    method: :delete,
+    confirm:"Really delete it?" %>

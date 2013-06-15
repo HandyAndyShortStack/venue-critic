@@ -31,6 +31,15 @@ class ReviewsController < ApplicationController
     end
   end
 
+
+  def destroy
+    if @review.destroy
+      redirect_to @venue, notice: "Review destroyed"
+    else
+      redirect_to [@venue, @review], notice: "there was a problem deleting this review"
+    end
+  end
+
 private
 
   def review_params
