@@ -20,6 +20,17 @@ class ReviewsController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    if @review.update_attributes(review_params)
+      redirect_to [@venue, @review], notice: "Review updated"
+    else
+      render action: "edit", alert: "Review unchaged"
+    end
+  end
+
 private
 
   def review_params
