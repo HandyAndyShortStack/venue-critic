@@ -6,7 +6,7 @@ feature "deleting venues" do
 
   scenario "deleting a venue" do
 
-    visit "venues"
+    visit "/venues"
     click_link "Wally's"
     click_button "delete venue information"
 

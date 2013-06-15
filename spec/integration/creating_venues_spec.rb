@@ -4,7 +4,7 @@ feature "creating a venue" do
   
   scenario "creating a venue from homepage" do
 
-    visit "/"
+    visit "/venues"
     click_link "add a new venue"
     fill_in "Name", with: "Wally's"
     fill_in "Address", with: "down by the railroad tracks"
