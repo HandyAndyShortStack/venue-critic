@@ -9,5 +9,28 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require foundation
  *= require_tree .
  */
+
+$color-0: #fff5fe;
+$color-1: #ffcff8;
+$color-2: #935c8a;
+$color-3: #5a194f;
+
+body {
+  background-color: $color-0;
+}
+
+#title {
+  background-color: $color-1;
+  text-align: center;
+}
+
+#recent, #navigation {
+  background-color: $color-2;
+}
+
+#account {
+  background-color: $color-3;
+}
