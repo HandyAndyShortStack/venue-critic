@@ -12,10 +12,17 @@
 <% end %>
 
 <%= link_to "review this venue", new_venue_review_path(@venue) %><br />
+
 <%= link_to "back to index", venues_path %><br />
-<%= link_to "edit venue information", edit_venue_path(@venue) %><br />
-<%= button_to "delete venue information",
+
+<% if can? :update, @venue %>
+  <%= link_to "edit venue information", edit_venue_path(@venue) %><br />
+<% end %>
+
+<% if can? :delete, @venue %>
+  <%= button_to "delete venue information",
     venue_path(@venue),
     method: :delete,
     confirm:"Really delete it?" %>
+<% end %>
 

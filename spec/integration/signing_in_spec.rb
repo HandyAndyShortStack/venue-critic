@@ -9,7 +9,7 @@ feature "Signing in" do
     open_email user.email, with_subject: /Confirmation/
     click_first_link_in_email
     page.should have_content("Your account was successfully confirmed")
-    page.should have_content("Signed in as #{user.email}")
+    page.should have_content("Signed in as #{user.username}")
   end
 
   scenario "Signing in via form" do

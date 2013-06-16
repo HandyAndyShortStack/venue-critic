@@ -2,16 +2,13 @@ require "spec_helper"
 
 feature "editing reviews" do
 
-  before do
-    user = Factory(:confirmed_user)
-    sign_in_as!(user)
-  end
-
+  let!(:user) { Factory(:confirmed_user) }
   let!(:venue) { Factory(:venue) }
-  let!(:review) { Factory(:review) }
+  let!(:review) { Factory(:review, user_id: user.id) }
 
   scenario "editing a review" do
 
+    sign_in_as!(user)
     visit "/venues"
     click_link "Wally's"
     click_link "read more"

@@ -21,12 +21,20 @@ describe "User" do
       let (:user) { Factory(:confirmed_user) }
       let (:users_review) { Factory(:review, user_id: user.id) }
       let (:other_review) { Factory(:review, user_id: (user.id + 1) ) }
+      let (:venue) { Factory(:venue) }
 
       it{ should be_able_to(:manage, users_review ) }
       it{ should be_able_to(:read, other_review) }
       it{ should_not be_able_to(:manage, other_review) }
+      it{ should_not be_able_to(:delete, venue) }
     end
 
+    context "admin user" do
+      let (:user) { Factory(:confirmed_user, role: 'admin') }
+      let (:venue) { Factory(:review) }
+
+      it{ should be_able_to(:delete, venue) }
+    end
   end
 end
 

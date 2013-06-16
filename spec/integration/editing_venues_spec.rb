@@ -1,11 +1,13 @@
 require "spec_helper"
 
 feature "editing venues" do
-  
-  let!(:venue) { Factory(:venue) }
+
+  let!(:venue) { Factory(:venue, user_id: user.id) }
+  let!(:user) { Factory(:confirmed_user) }
 
   scenario "editing a venue" do
-    
+
+    sign_in_as!(user)
     visit "/venues"
     click_link "Wally's"
     click_link "edit venue information"

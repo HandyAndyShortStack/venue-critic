@@ -5,8 +5,15 @@
   <%= attr_name %>: <%= attr_value %>
 </p>
 <% end %>
-<%= link_to "edit this review", edit_venue_review_path(@review) %><br />
-<%= button_to "delete this review",
+
+<% if can? :delete, @review %>
+  <%= link_to "edit this review", edit_venue_review_path(@review) %><br />
+<% end %>
+
+<% if can? :delete, @review %>
+  <%= button_to "delete this review",
     venue_review_path(@venue, @review),
     method: :delete,
     confirm:"Really delete it?" %>
+<% end %>
+
