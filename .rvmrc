@@ -1,2 +1,3 @@
 rvm use 1.9.3@venue-critic --create
 source .env
+source .env
