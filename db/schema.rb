@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130619234943) do
+ActiveRecord::Schema.define(:version => 20130620010726) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -69,10 +69,11 @@ ActiveRecord::Schema.define(:version => 20130619234943) do
     t.boolean  "alcohol"
     t.string   "allages"
     t.string   "stagesize"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.integer  "user_id"
     t.string   "image"
+    t.boolean  "image_processed", :default => false
   end
 
 end

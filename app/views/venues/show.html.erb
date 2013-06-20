@@ -1,7 +1,11 @@
 <h2>here lies <%= @venue.name %></h2>
 
-<div class="venue-image">
-  <%= image_tag @venue.image_url(:thumb).to_s %>
+ <div class="venue-image">
+  <% if @venue.image_processed? %>
+    <%= link_to image_tag(@venue.image_url(:thumb)), @venue if @venue.image? %>
+  <% else %>
+    <em>Processing...</em>
+  <% end %>
 </div>
 
 <% @venue.attributes.each do |attr_name, attr_value| %>

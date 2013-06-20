@@ -6,15 +6,19 @@ class VenuesController < ApplicationController
   end
 
   def new
-    @venue = Venue.new
+    @venue = Venue.new(key: params[:key])
+    @uploader = Venue.new.image
+    @uploader.success_action_redirect = new_venue_url
   end
 
   def create
+    binding.pry
     @venue = Venue.create(venue_params)
     if @venue.save
       redirect_to @venue, notice: "Venue information saved"
     else
-      render action: "new", alert: "Venue not saved"
+      flash[:alert] = "Venue not saved"
+      render action: "new"
     end
   end
 
@@ -50,7 +54,7 @@ class VenuesController < ApplicationController
     end
 
     def venue_params
-      params.require(:venue).permit(:id, :name, :address, :neighborhood,
+      params.require(:venue).permit(:id, :name, :address, :neighborhood, :key,
                                     :alcohol, :allages, :stagesize, :image)
     end
 
