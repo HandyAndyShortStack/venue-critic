@@ -7,7 +7,10 @@ gem 'rails', '3.2.13'
 gem 'pg'
 
 gem 'carrierwave'
+gem 'carrierwave_direct'
 gem 'rmagick'
+gem 'sidekiq'
+gem 'fog'
 
 gem 'jquery-rails'
 
