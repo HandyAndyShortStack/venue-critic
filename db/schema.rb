@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130619231729) do
+ActiveRecord::Schema.define(:version => 20130619234943) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(:version => 20130619231729) do
     t.text     "compdescr"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.string   "image"
   end
 
   create_table "users", :force => true do |t|
@@ -73,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20130619231729) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.integer  "user_id"
+    t.string   "image"
   end
 
 end

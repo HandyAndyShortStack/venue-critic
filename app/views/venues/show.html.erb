@@ -1,8 +1,13 @@
 <h2>here lies <%= @venue.name %></h2>
+
+<div class="venue-image">
+  <%= image_tag @venue.image_url(:thumb).to_s %>
+</div>
+
 <% @venue.attributes.each do |attr_name, attr_value| %>
-<p>
-  <%= attr_name %>: <%= attr_value %>
-</p>
+  <p>
+    <%= attr_name %>: <%= attr_value %>
+  </p>
 <% end %>
 
 <h3>reviews:</h3>
@@ -23,6 +28,6 @@
   <%= button_to "delete venue information",
     venue_path(@venue),
     method: :delete,
-    confirm:"Really delete it?" %>
+    confirm: "Really delete it?" %>
 <% end %>
 
