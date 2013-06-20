@@ -21,7 +21,7 @@ class VenuesController < ApplicationController
 
   def show
     @uploader = Venue.new.image
-    @uploader.success_action_redirect = @venue
+    @uploader.success_action_redirect = venues_path
   end
 
   def edit

@@ -12,7 +12,11 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'fog'
 gem 'carrierwave_direct'
+
 gem 'sidekiq'
+
+gem 'slim', '>= 1.1.0'
+gem 'sinatra', '>= 1.3.0', require: nil
 
 gem 'jquery-rails'
 
