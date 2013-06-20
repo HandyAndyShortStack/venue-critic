@@ -29,6 +29,8 @@ gem 'omniauth-facebook'
 gem 'twitter'
 gem 'fb_graph'
 
+gem 'figaro'
+
 gem "nifty-generators", group:  :development
 
 group :test, :development do
