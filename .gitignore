@@ -10,6 +10,10 @@
 # Ignore the default SQLite database.
 /db/*.sqlite3
 
+/*.jpg
+/*.png
+/*.gif
+
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
@@ -17,3 +21,6 @@
 # whoopsie daisies
 .env
 
+
+# Ignore application configuration
+/config/application.yml

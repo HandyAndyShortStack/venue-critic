@@ -7,12 +7,9 @@ class VenuesController < ApplicationController
 
   def new
     @venue = Venue.new(key: params[:key])
-    @uploader = Venue.new.image
-    @uploader.success_action_redirect = new_venue_url
   end
 
   def create
-    binding.pry
     @venue = Venue.create(venue_params)
     if @venue.save
       redirect_to @venue, notice: "Venue information saved"
@@ -23,6 +20,8 @@ class VenuesController < ApplicationController
   end
 
   def show
+    @uploader = Venue.new.image
+    @uploader.success_action_redirect = @venue
   end
 
   def edit

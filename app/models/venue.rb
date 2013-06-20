@@ -3,7 +3,7 @@ class Venue < ActiveRecord::Base
   has_many :reviews
   accepts_nested_attributes_for :reviews
 
-  mount_uploader :image, ImageUploader, mount_on: :image
+  mount_uploader :image, ImageUploader
 
   after_save :enqueue_image
 
@@ -12,7 +12,7 @@ class Venue < ActiveRecord::Base
   end
 
   def enqueue_image
-    ImageWorker.perform_async(id, key) if key.present? && image.present?
+    ImageWorker.perform_async(id, key) if key.present? # && image.present?
   end
 
   class ImageWorker
