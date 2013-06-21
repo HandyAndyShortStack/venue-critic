@@ -2,7 +2,10 @@
 <%= link_to "add a new venue", new_venue_path %>
 <ul>
   <% @venues.each do |venue| %>
-    <li><%= link_to venue.name, venue %></li>
+    <li>
+      <%= link_to venue.name, venue %>
+      <%= image_tag venue.image_url(:thumb).to_s %>
+    </li>
   <% end %>
 </ul>
 

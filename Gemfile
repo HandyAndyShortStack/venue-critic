@@ -31,7 +31,10 @@ gem 'fb_graph'
 
 gem 'figaro'
 
-gem "nifty-generators", group:  :development
+gem 'nifty-generators', group:  :development
+
+gem 'rmagick'
+gem 'carrierwave'
 
 group :test, :development do
   gem 'guard'

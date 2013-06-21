@@ -5,6 +5,8 @@
 </p>
 <% end %>
 
+<p><%= image_tag @venue.image_url(:thumb).to_s %></p>
+
 <h3>reviews:</h3>
 
 <% @venue.reviews.each do |review| %>
