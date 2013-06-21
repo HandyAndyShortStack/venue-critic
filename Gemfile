@@ -35,6 +35,7 @@ gem 'nifty-generators', group:  :development
 
 gem 'rmagick'
 gem 'carrierwave'
+gem 'fog'
 
 group :test, :development do
   gem 'guard'
